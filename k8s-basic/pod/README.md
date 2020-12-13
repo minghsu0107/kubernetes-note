@@ -59,12 +59,12 @@ We need an agent for us to reach the pod outside the k3d cluster.
 2. Create a NodePort service for it
     - `kubectl apply -f node-port-svc.yaml`
     - nodePort
-        - On top of having a cluster-internal IP, expose the service on a port on each node of the cluster (the same port on each node). You'll be able to contact the service on any<nodeIP>:nodePortaddress. So nodePort is alse the service port which can be accessed by the node ip by others with external ip
-        - <node-ip>:<nodePort> -> <pod>:<targetPort>
+        - On top of having a cluster-internal IP, expose the service on a port on each node of the cluster (the same port on each node). You'll be able to contact the service on any `<nodeIP>:nodePortaddress`. So nodePort is alse the service port which can be accessed by the node ip by others with external ip
+        - `<node-ip>:<nodePort> -> <pod>:<targetPort>`
         - If we don't specify it, Kubernetes will choose it randomly for us
     - port
         - The port that the service is exposed on the service’s cluster ip (virtual ip). Port is the service port which is accessed by others with cluster ip. (can only be accessed inside the cluster)
-        - <virtual-ip>:<port> -> <pod>:<targetPort>
+        - `<virtual-ip>:<port> -> <pod>:<targetPort>`
     - targetPort
         - The port on the pod that the service should proxy traffic to.
 3. Create `nginx-pod` and the test html
