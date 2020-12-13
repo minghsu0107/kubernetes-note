@@ -1,11 +1,17 @@
 # Elasticsearch, Fluentd, and Kibana Stack
 [reference](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-elasticsearch-fluentd-and-kibana-efk-logging-stack-on-kubernetes#step-4-—-creating-the-fluentd-daemonset)
+## Prerequisites
+- A working Kubernetes cluster
+- **Make sure that /data/es already exists on each node**
+- Turn off swap to make elasticsearch more efficient (optional)
 ## Usage
 First, enable static volume provisioning:
 ```bash
 kubectl apply -f elasticsearch/pv.yaml
 kubectl apply -f elasticsearch/storageclass.yaml
 ```
+Note that you need to change the node name of `.spec.nodeAffinity` to yours in `pv.yaml`.
+
 Next, deploy all other resources.
 
 For example, when deploying elasticsearch cluster, we can rollout the status:
