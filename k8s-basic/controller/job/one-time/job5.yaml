@@ -1,0 +1,19 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: job5
+spec:
+  # When the TTL controller cleans up the Job, it will delete the Job cascadingly, i.e. delete its dependent objects, such as Pods, together with the Job
+  ttlSecondsAfterFinished: 5 #  will be eligible to be automatically deleted 5 secs after it finished
+  completions: 3
+  parallelism: 3
+  template:
+    spec:
+      containers:
+        - name: job
+          image: busybox
+          args:
+            - /bin/sh
+            - -c
+            - date; echo sleeping....; sleep 10s; echo exiting...; date
+      restartPolicy: Never

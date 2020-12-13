@@ -1,0 +1,8 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: local-storage
+provisioner: kubernetes.io/no-provisioner
+# Delaying volume binding ensures that the PersistentVolumeClaim binding decision 
+# will also be evaluated with any other node constraints the Pod may have
+volumeBindingMode: WaitForFirstConsumer

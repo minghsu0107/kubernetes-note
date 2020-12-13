@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: redis-pod-configmap-env
+spec:
+  containers:
+  - name: redis-container
+    image: redis
+    command: ["echo", "hello"]
+    env:
+      - name: FILE_1
+        valueFrom:
+          configMapKeyRef:
+            name: redis-configmap-env
+            key: file.1
+      - name: FILE_2
+        valueFrom:
+          configMapKeyRef:
+            name: redis-configmap-env
+            key: file.2
+  restartPolicy: Never
