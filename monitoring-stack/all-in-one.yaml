@@ -2786,7 +2786,7 @@ spec:
         component: node-exporter
     spec:
       containers:
-      - image: prom/node-exporter:v0.14.0
+      - image: prom/node-exporter:latest
         name: prometheus-node-exporter
         ports:
         - name: prom-node-exp
