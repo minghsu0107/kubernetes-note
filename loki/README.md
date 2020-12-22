@@ -7,7 +7,7 @@ To create the base64 encoded config of Loki, we can:
 ```bash
 cat config.yaml | base64
 ```
-
+### Promtail Configuration
 `config.yaml`:
 ```yaml
 auth_enabled: false
@@ -50,4 +50,7 @@ table_manager:
 ```
 
 See more config [here](https://grafana.com/docs/loki/latest/configuration/#schema_config).
+### Import Loki In Grafana
+Go to datasource and add loki with url `http://loki-headless.logging.svc.cluster.local:3100`.
 
+Now, go to `explore` and you start query lgos in the Loki dashboard.
