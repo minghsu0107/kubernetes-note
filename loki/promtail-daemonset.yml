@@ -2,13 +2,13 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: prometheus
+  name: promtail
   namespace: logging
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
-  name: prometheus
+  name: promtail
 rules:
   - apiGroups: [""]
     resources:
@@ -16,6 +16,7 @@ rules:
       - services
       - endpoints
       - pods
+      - namespaces
       - nodes/proxy
     verbs: ["get", "list", "watch"]
   - apiGroups: [""]
@@ -28,14 +29,14 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: prometheus
+  name: promtail
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: prometheus
+  name: promtail
 subjects:
 - kind: ServiceAccount
-  name: prometheus
+  name: promtail
   namespace: logging
 ---
 apiVersion: apps/v1
@@ -56,8 +57,8 @@ spec:
       labels:
         app: promtail
     spec:
-      serviceAccount: prometheus
-      serviceAccountName: prometheus
+      serviceAccount: promtail
+      serviceAccountName: promtail
       containers:
         - name: promtail
           image: grafana/promtail:latest

@@ -7,7 +7,9 @@ metadata:
   labels:
     app: loki
 rules:
-- apiGroups:      ['extensions']
-  resources:      ['podsecuritypolicies']
-  verbs:          ['use']
-  resourceNames:  [loki]
+- apiGroups: ['extensions']
+  resources:
+  - pods
+  - namespaces
+  verbs: ['use']
+  resourceNames: [loki]
