@@ -1,4 +1,5 @@
 ---
+# open loki endpoint for incoming promtail and prometheus requests
 apiVersion: v1
 kind: Service
 metadata:
@@ -38,3 +39,24 @@ spec:
       targetPort: http-metrics
   selector:
     app: loki
+---
+# open promtail metrics endpoint for prometheus
+apiVersion: v1
+kind: Service
+metadata:
+  name: promtail
+  namespace: logging
+  labels:
+    app: promtail
+  annotations:
+    prometheus.io/scrape: "true"
+    prometheus.io/port: "3101"
+spec:
+  type: ClusterIP
+  ports:
+    - port: 3101
+      protocol: TCP
+      name: http-metrics
+      targetPort: http-metrics
+  selector:
+    app: promtail

@@ -56,6 +56,9 @@ spec:
     metadata:
       labels:
         app: promtail
+      annotations:
+        prometheus.io/port: http-metrics
+        prometheus.io/scrape: "true"
     spec:
       serviceAccount: promtail
       serviceAccountName: promtail

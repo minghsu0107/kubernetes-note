@@ -14,8 +14,13 @@ auth_enabled: false
 chunk_store_config:
   max_look_back_period: 0
 ingester:
+  # When this threshold is exceeded the head chunk block will be cut and compressed inside the chunk
   chunk_block_size: 262144
+  # How long chunks should sit in-memory with no updates before being flushed 
+  # if they don't hit the max block size. This means that half-empty chunks will still be flushed 
+  # after a certain period as long as they receive no further activity.
   chunk_idle_period: 3m
+  # How long chunks should be retained in-memory after they've been flushed.
   chunk_retain_period: 1m
   lifecycler:
     ring:

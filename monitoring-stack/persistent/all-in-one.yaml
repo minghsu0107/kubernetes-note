@@ -2411,6 +2411,7 @@ spec:
 apiVersion: v1
 kind: Secret
 data:
+  # admin
   admin-password: YWRtaW4=
   admin-username: YWRtaW4=
 metadata:
@@ -2603,8 +2604,8 @@ spec:
             cpu: 500m
             memory: 500M
           limits:
-            cpu: 500m
-            memory: 500M
+            cpu: 1000m
+            memory: 3Gi
         volumeMounts:
         - name: config-volume
           mountPath: /etc/prometheus
