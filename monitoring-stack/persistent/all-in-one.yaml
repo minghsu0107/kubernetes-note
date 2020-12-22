@@ -414,7 +414,7 @@ spec:
         component: core
     spec:
       containers:
-      - image: grafana/grafana:latest
+      - image: grafana/grafana:v7.3.5
         name: grafana-core
         imagePullPolicy: IfNotPresent
         # env:
