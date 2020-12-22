@@ -8,6 +8,7 @@ metadata:
     app: loki
 spec:
   podManagementPolicy: OrderedReady
+  # if we want 3 replicas, we need two more PVs
   replicas: 1
   selector:
     matchLabels:
