@@ -1,0 +1,1 @@
+kubectl create secret generic rabbitmq-config --from-literal=erlang-cookie=rabbitmq-k8s-Dem0
