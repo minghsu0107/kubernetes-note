@@ -113,6 +113,12 @@ func NewConsumer(amqpURI, exchange, exchangeType, queueName, key, ctag string) (
 		return nil, fmt.Errorf("Exchange Declare: %s", err)
 	}
 
+	/*
+		Messages with expired ttl will stay in queue as long as they not reached queue head. Don't worry,
+		they will not be send to consumer, but they will take some resources until they reach head.
+		This is how RabbitMQ queues works (they stick to FIFO idea, which is sometimes may break strict compatibility with AMQP protocol).
+	*/
+	args := Table{"x-message-ttl": int32(9000000)}
 	log.Printf("declared Exchange, declaring Queue %q", queueName)
 	queue, err := c.channel.QueueDeclare(
 		queueName, // name of the queue
@@ -120,7 +126,7 @@ func NewConsumer(amqpURI, exchange, exchangeType, queueName, key, ctag string) (
 		false,     // delete when unused
 		false,     // exclusive
 		false,     // noWait
-		nil,       // arguments
+		args,      // arguments
 	)
 	if err != nil {
 		return nil, fmt.Errorf("Queue Declare: %s", err)

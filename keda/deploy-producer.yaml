@@ -9,6 +9,6 @@ spec:
       - name: rabbitmq-client
         image: jeffhollan/rabbitmq-client:dev
         imagePullPolicy: Always
-        command: ["send",  "amqp://guest:guest@rabbitmq.default.svc.cluster.local:5672", "300"]
+        command: ["send",  "amqp://user:pass@rabbitmq.default.svc.cluster.local:5672", "300"]
       restartPolicy: Never
   backoffLimit: 4
