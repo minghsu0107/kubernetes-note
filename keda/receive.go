@@ -16,9 +16,11 @@ func failOnError(err error, msg string) {
 
 /*
 All deliveries in AMQP must be acknowledged. It is expected of the consumer to
-call Delivery.Ack after it has successfully processed the delivery.  If the
+call Delivery.Ack after it has successfully processed the delivery. If the
 consumer is cancelled or the channel or connection is closed any unacknowledged
 deliveries will be requeued at the end of the same queue.
+
+Acknowledging a message tells RabbitMQ that it has been taken care of and RabbitMQ can delete it now
 */
 
 func main() {
