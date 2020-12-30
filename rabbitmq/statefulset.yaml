@@ -94,6 +94,8 @@ spec:
             secretKeyRef:
               name: rabbitmq-config
               key: erlang-cookie
+        - name: RABBITMQ_LOGS
+          value: "-" # output to stdout (this is already default in this version)
         ports:
         - containerPort: 5672
           name: amqp
