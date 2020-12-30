@@ -20,7 +20,10 @@ call Delivery.Ack after it has successfully processed the delivery. If the
 consumer is cancelled or the channel or connection is closed any unacknowledged
 deliveries will be requeued at the end of the same queue.
 
-Acknowledging a message tells RabbitMQ that it has been taken care of and RabbitMQ can delete it now
+Acknowledging a message tells RabbitMQ that it has been taken care of and RabbitMQ can delete it now.
+
+RabbitMQ will round-robin the messages to the consumers, but only one consumer will receive the message
+from the queue. This is by design in RabbitMQ, when you have multiple consumers on a single queue.
 */
 
 func main() {
