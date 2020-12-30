@@ -118,7 +118,7 @@ func NewConsumer(amqpURI, exchange, exchangeType, queueName, key, ctag string) (
 		they will not be send to consumer, but they will take some resources until they reach head.
 		This is how RabbitMQ queues works (they stick to FIFO idea, which is sometimes may break strict compatibility with AMQP protocol).
 	*/
-	args := Table{"x-message-ttl": int32(9000000)}
+	args := amqp.Table{"x-message-ttl": int32(9000000)}
 	log.Printf("declared Exchange, declaring Queue %q", queueName)
 	queue, err := c.channel.QueueDeclare(
 		queueName, // name of the queue
