@@ -32,6 +32,9 @@ spec:
     metadata:
       labels:
         app: redis-cluster
+      annotations:
+        prometheus.io/port: metrics
+        prometheus.io/scrape: "true"
     spec:
       containers:
       - name: redis
@@ -54,6 +57,14 @@ spec:
         - name: data
           mountPath: /data
           readOnly: false
+      - name: redis-exporter
+        image: oliver006/redis_exporter:v1.15.1
+        ports:
+        - containerPort: 9121
+          name: metrics
+        env:
+        - name: REDIS_ADDR
+          value: redis://redis-cluster.default.svc.cluster.local:6379
       volumes:
       - name: conf
         configMap:

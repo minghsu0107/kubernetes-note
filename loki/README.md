@@ -12,6 +12,9 @@ cat config.yaml | base64
 ```yaml
 auth_enabled: false
 chunk_store_config:
+  # To avoid querying of data beyond the retention period
+  # max_look_back_period must be set to a value less than or equal to 
+  # what is set in table_manager.retention_period
   max_look_back_period: 0
 ingester:
   # When this threshold is exceeded the head chunk block will be cut and compressed inside the chunk
@@ -37,6 +40,7 @@ schema_config:
   configs:
   - from: "2018-04-15"
     index:
+      # Table period
       period: 168h
       prefix: index_
     object_store: filesystem
@@ -50,6 +54,10 @@ storage_config:
   filesystem:
     directory: /data/loki/chunks
 table_manager:
+  # The Table Manager implements the retention deleting the entire tables 
+  # whose data exceeded the retention_period
+  # the Table Manager keeps the last tables alive using this formula:
+  # number_of_tables_to_keep = floor(retention_period / table_period) + 1
   retention_deletes_enabled: false
   retention_period: 0
 ```
