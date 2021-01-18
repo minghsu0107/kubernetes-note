@@ -28,37 +28,47 @@ metadata:
   name: stan-config
 data:
   stan.conf: |
+    port: 4222
     http: 8222
-
     cluster {
-      port: 6222
-      routes [
-        nats://stan-0.stan:6222
-        nats://stan-1.stan:6222
-        nats://stan-2.stan:6222
-      ]
+      listen: 0.0.0.0:6222
+      routes: ["nats://stan-0.stan:6222", "nats://stan-1.stan:6222", "nats://stan-2.stan:6222"]
       cluster_advertise: $CLUSTER_ADVERTISE
       connect_retries: 10
     }
-
     streaming {
-      id: test-cluster
+      cluster_id: stan-cluster
       store: file
       dir: /data/stan/store
-      ft_group_name: "test-cluster"
       file_options {
+          # Size of buffers that can be used to buffer write operations, default: 2mb
           buffer_size: 32mb
+          # Define if server should perform "file sync" operations during a flush from publisher
           sync_on_flush: false
+          # Define the file slice maximum size
           slice_max_bytes: 512mb
           parallel_recovery: 64
+          # Interval at which the store should be automatically flushed and sync'ed on disk. Default is every minute
+          # auto_sync: "1m"
       }
       store_limits {
-          max_channels: 10
+          # Maximum number of channels, 0 means unlimited
+          max_channels: 200
+          # Maximum number of messages per channel, 0 means unlimited
           max_msgs: 0
+          # Total size of messages per channel, 0 means unlimited
           max_bytes: 256gb
-          max_age: 1h
+          # How long messages can stay in the log, default: unlimited
+          max_age: 3h
+          # Maximum number of subscriptions per channel, 0 means unlimited
           max_subs: 128
-      }  
+      }
+      cluster {
+          node_id: $POD_NAME
+          log_path: /data/stan/log
+          # Explicit names of resulting peers
+          peers: ["stan-0", "stan-1", "stan-2"]
+      }
     }
 ---
 apiVersion: apps/v1
