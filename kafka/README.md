@@ -47,6 +47,6 @@ Send messages in producer:
 ```
 You should receive messages in consumer:
 ```
->hello
->world
+hello
+world
 ```
