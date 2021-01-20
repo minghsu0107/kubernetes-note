@@ -79,6 +79,7 @@ spec:
         - -c
         - "exec kafka-server-start.sh /opt/kafka/config/server.properties --override broker.id=${HOSTNAME##*-} \
           --override listeners=PLAINTEXT://:9093 \
+          --override advertised.listeners=PLAINTEXT://$POD_NAME.kafka-hs.default.svc.cluster.local:9093 \
           --override zookeeper.connect=zk-cs.kafka.svc.cluster.local:2181 \
           --override log.dir=/var/lib/kafka \
           --override auto.create.topics.enable=true \
@@ -169,6 +170,10 @@ spec:
           value : "-Xmx512M -Xms512M"
         - name: KAFKA_OPTS
           value: "-Dlogging.level=INFO"
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
         volumeMounts:
         - name: datadir
           mountPath: /var/lib/kafka

@@ -50,3 +50,5 @@ You should receive messages in consumer:
 hello
 world
 ```
+### Others
+One can also test the Kafka cluster using [this helper](https://github.com/rmoff/kafka-listeners/tree/master/golang).
