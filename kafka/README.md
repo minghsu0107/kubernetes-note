@@ -1,6 +1,7 @@
 # Kafka and Zookeeper Cluster
-[reference 1](https://kow3ns.github.io/kubernetes-zookeeper/manifests/)
-[reference 2](https://kubernetes.io/blog/2017/09/kubernetes-statefulsets-daemonsets/)
+- [reference 1](https://kow3ns.github.io/kubernetes-zookeeper/manifests/)
+- [reference 2](https://kubernetes.io/blog/2017/09/kubernetes-statefulsets-daemonsets/)
+- [cp-kafka](https://github.com/confluentinc/cp-helm-charts/tree/master/charts/cp-kafka)
 
 We will deploy Kafka in default namespace and ZooKeeper in kafka namespace.
 ## Test
@@ -65,7 +66,6 @@ world
     - [Dockerhub](https://hub.docker.com/r/danielqsj/kafka-exporter)
     - Grafana Dashboard ID: 7589
 - To filter out all Kafka-related logs on Loki:
-
 ```bash
 {app="kafka"} != "SocketServer" != "InvalidReceiveException" != "org.apache.kafka.common.network" != "Thread.java" != "kafka_exporter.go"
 ```
