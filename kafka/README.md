@@ -58,13 +58,14 @@ hello
 world
 ```
 ## Final Notes
-- After deleting a topic using the above command, one should also delete the topic directory on each broker (as defined in the logs.dirs and log.dir properties) with `rm -rf` command
+- After deleting a topic using the above command, one should also delete the topic directory on each broker (as defined in the logs.dirs and log.dir properties) with `rm -rf` command.
 - Check the Confluent platform and Apache Kafka compatibility [here](https://docs.confluent.io/platform/current/installation/versions-interoperability.html). For example, we use Confluent platform version 6.0.1, which maps to Kafka version 2.6.1.
 - One can also test the Kafka cluster using [this helper](https://github.com/rmoff/kafka-listeners/tree/master/golang).
 - Kafka Exporter
     - [Github](https://github.com/danielqsj/kafka_exporter)
     - [Dockerhub](https://hub.docker.com/r/danielqsj/kafka-exporter)
     - Grafana Dashboard ID: 7589
+    - For each Kafka server, we deploy a sidecar exporter. However, one can also deploy the exporter separately. Please refer to `kafka-enterprise-exporter.yaml`.
 - To filter out all Kafka-related logs on Loki:
 ```bash
 {app="kafka"} != "SocketServer" != "InvalidReceiveException" != "org.apache.kafka.common.network" != "Thread.java" != "kafka_exporter.go"

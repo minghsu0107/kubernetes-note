@@ -6,7 +6,7 @@ metadata:
   labels:
     app: kafka
   annotations:
-    prometheus.io/port: "9308"
+    prometheus.io/port: metrics
     prometheus.io/scrape: "true"
 spec:
   ports:
@@ -50,9 +50,6 @@ spec:
     metadata:
       labels:
         app: kafka
-      annotations:
-        prometheus.io/port: metrics
-        prometheus.io/scrape: "true"
     spec:
       affinity:
         podAntiAffinity:
