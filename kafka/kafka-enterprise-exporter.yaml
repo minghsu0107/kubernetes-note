@@ -6,7 +6,7 @@ metadata:
   labels:
     app: kafka-exporter
   annotations:
-    prometheus.io/port: metrics
+    prometheus.io/port: "9308"
     prometheus.io/scrape: "true"
 spec:
   selector:
