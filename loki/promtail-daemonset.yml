@@ -64,7 +64,7 @@ spec:
       serviceAccountName: promtail
       containers:
         - name: promtail
-          image: grafana/promtail:latest
+          image: grafana/promtail:master-0208071
           imagePullPolicy: IfNotPresent
           args:
           - -config.file=/etc/promtail/kubernetes-config.yaml

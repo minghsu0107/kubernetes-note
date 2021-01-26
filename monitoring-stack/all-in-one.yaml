@@ -414,7 +414,7 @@ spec:
         component: core
     spec:
       containers:
-      - image: grafana/grafana:latest
+      - image: grafana/grafana:7.3.5
         name: grafana-core
         imagePullPolicy: IfNotPresent
         # env:
@@ -2787,7 +2787,7 @@ spec:
         component: node-exporter
     spec:
       containers:
-      - image: prom/node-exporter:latest
+      - image: prom/node-exporter:v1.0.1
         name: prometheus-node-exporter
         ports:
         - name: prom-node-exp
