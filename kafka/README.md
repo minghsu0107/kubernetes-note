@@ -65,6 +65,11 @@ world
     - [Github](https://github.com/danielqsj/kafka_exporter)
     - [Dockerhub](https://hub.docker.com/r/danielqsj/kafka-exporter)
     - Grafana Dashboard ID: 7589
+        1. Import dashboard
+        2. Go to Kafka Exporter Overview / Settings
+        3. Go to variable `instance`
+        4. Set query as `label_values(kafka_brokers, instance)`
+        5. Update the dashboard settings and save the variable
     - For each Kafka server, we deploy a sidecar exporter. However, one can also deploy the exporter separately. Please refer to `kafka-enterprise-exporter.yaml`.
 - To filter out all Kafka-related logs on Loki:
 ```bash
