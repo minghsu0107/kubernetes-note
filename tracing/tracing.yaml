@@ -20,6 +20,8 @@ spec:
     metadata:
       annotations:
         linkerd.io/inject: enabled
+        prometheus.io/port: metrics
+        prometheus.io/scrape: "true"
       labels:
         app: jaeger
     spec:
@@ -33,10 +35,12 @@ spec:
         # - name: SPAN_STORAGE_TYPE
         #   value: elasticsearch
         # - name: ES_SERVER_URLS
-        #   value: http://es-cluster-0.elasticsearch.default.svc.cluster.local:9200
+        #   value: http://elasticsearch.default.svc.cluster.local:9200
         ports:
         - name: collection
           containerPort: 14268
+        - name: metrics
+          containerPort: 14269
         - name: ui
           containerPort: 16686
 ---
@@ -47,12 +51,17 @@ metadata:
   namespace: tracing
   labels:
     app: jaeger
+  annotations:
+    prometheus.io/port: "14269"
+    prometheus.io/scrape: "true"
 spec:
   selector:
     app: jaeger
   ports:
   - name: collection
     port: 14268
+  - name: metrics
+    port: 14269
   - name: ui
     port: 16686
 ---
