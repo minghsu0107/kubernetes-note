@@ -26,7 +26,12 @@ spec:
       dnsPolicy: ClusterFirst
       containers:
       - name: jaeger
-        image: jaegertracing/all-in-one:1.8
+        image: jaegertracing/all-in-one:1.19.2
+        # env:
+        # - name: SPAN_STORAGE_TYPE
+        #   value: elasticsearch
+        # - name: ES_SERVER_URLS
+        #   value: http://es-cluster-0.elasticsearch.default.svc.cluster.local:9200
         ports:
         - name: collection
           containerPort: 14268
