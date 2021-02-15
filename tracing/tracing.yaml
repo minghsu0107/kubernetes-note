@@ -18,6 +18,8 @@ spec:
       app: jaeger
   template:
     metadata:
+      annotations:
+        linkerd.io/inject: enabled
       labels:
         app: jaeger
     spec:
@@ -111,6 +113,7 @@ spec:
   template:
     metadata:
       annotations:
+        linkerd.io/inject: enabled
         prometheus.io/path: "/metrics"
         prometheus.io/port: "8888"
         prometheus.io/scrape: "true"
