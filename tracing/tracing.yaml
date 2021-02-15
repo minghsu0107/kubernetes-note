@@ -26,6 +26,7 @@ spec:
       dnsPolicy: ClusterFirst
       containers:
       - name: jaeger
+        # only 1.14+ are compatible with elasticsearch 7.x
         image: jaegertracing/all-in-one:1.19.2
         # env:
         # - name: SPAN_STORAGE_TYPE
