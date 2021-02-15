@@ -27,6 +27,7 @@ spec:
       containers:
       - name: jaeger
         # only 1.14+ are compatible with elasticsearch 7.x
+        # https://github.com/jaegertracing/jaeger/issues/2284
         image: jaegertracing/all-in-one:1.19.2
         # env:
         # - name: SPAN_STORAGE_TYPE
