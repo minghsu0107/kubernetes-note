@@ -4,6 +4,7 @@
 kubectl -n tracing port-forward deploy/jaeger 30188:16686 --address 0.0.0.0
 ```
 ## Note
+- [Opencensus Collector Configuration](https://github.com/census-instrumentation/opencensus-service/blob/master/exporter/README.md)
 - [Jaeger Data Source in Grafana](https://grafana.com/docs/grafana/latest/datasources/jaeger/)
     - set Jaeger URL: `http://jaeger.tracing:16686`.
 - Managing Elasticsearch backend
