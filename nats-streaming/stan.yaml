@@ -109,7 +109,6 @@ spec:
         args:
          - "-sc"
          - "/etc/stan-config/stan.conf"
-
         # Required to be able to define an environment variable
         # that refers to other environment variables.  This env var
         # is later used as part of the configuration file.
