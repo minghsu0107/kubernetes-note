@@ -53,3 +53,11 @@ modules:
       - HTTP/2
     prober: http
     timeout: 5s
+  http_2xx_for_stripe_api:
+    prober: http
+    timeout: 5s
+    http:
+      preferred_ip_protocol: "ip4"
+      method: GET
+      basic_auth:
+        username: 'sk_test_4eC39HqLyjWDarjtT1zdp7dc'
