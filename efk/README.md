@@ -29,10 +29,11 @@ kubectl port-forward <kibana-pod-name> 5601:5601 -n kube-logging
 ```
 Visit http://localhost:5601 in browser.
 
-1. Click on Discover in the left-hand navigation menu
-2. Use the `logstash-*` wildcard pattern to capture all the log data in our Elasticsearch cluster
-3. Configure which field Kibana will use to filter log data by time. In the dropdown, select the @timestamp field, and hit Create index pattern
-4. Hit Discover in the left hand navigation menu again. You should see a histogram graph and some recent log entries
+1. Login with the default username `admin` and password `admin`
+2. Click on Discover in the left-hand navigation menu
+3. Use the `logstash-*` wildcard pattern to capture all the log data in our Elasticsearch cluster
+4. Configure which field Kibana will use to filter log data by time. In the dropdown, select the @timestamp field, and hit Create index pattern
+5. Hit Discover in the left hand navigation menu again. You should see a histogram graph and some recent log entries
 ## Tuning Elasticsearch
 - [heap size](https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#heap-size-settings)
 - [more configuration](https://www.elastic.co/guide/en/elasticsearch/reference/current/docker.html#_notes_for_production_use_and_defaults)
