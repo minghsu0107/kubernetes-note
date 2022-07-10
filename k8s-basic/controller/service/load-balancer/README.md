@@ -33,9 +33,10 @@ exit
 http://load-balancer-ip
 http://load-balancer-ip/test.html
 ```
-Create a cluster in K3d, mapping the ingress port 80 to localhost:8081
+Create a cluster in K3d, mapping the ingress port 80 to localhost:8081 and disabling default Traefik:
 ```bash
-k3d cluster create --api-port 6550 -p "8081:80@loadbalancer" --agents 2
+# K3d version 5+
+k3d cluster create --api-port 6550 -p "8081:80@loadbalancer" --agents 2 --k3s-arg "--disable=traefik@server:0"
 ```
 Now, `load-balancer-ip` would be `localhost:8081`.
 ### Testing using nodePort
