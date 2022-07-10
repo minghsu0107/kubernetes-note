@@ -33,6 +33,11 @@ exit
 http://load-balancer-ip
 http://load-balancer-ip/test.html
 ```
+Create a cluster in K3d, mapping the ingress port 80 to localhost:8081
+```bash
+k3d cluster create --api-port 6550 -p "8081:80@loadbalancer" --agents 2
+```
+Now, `load-balancer-ip` would be `localhost:8081`.
 ### Testing using nodePort
 ```
 http://nodeip:nodeport
