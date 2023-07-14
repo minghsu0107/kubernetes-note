@@ -55,7 +55,7 @@ kubectl delete pod nginx-pod
 We need an agent for us to reach the pod outside the k3d cluster.
 
 1. Create a cluster, mapping the port 30080 from agent-0 to localhost:8082
-    - `k3d cluster create mycluster --agents 1 -p '8082:30080@agent[0]'`
+    - `k3d cluster create mycluster --agents 1 -p '8082:30080@agent:0'`
 2. Create a NodePort service for it
     - `kubectl apply -f node-port-svc.yaml`
     - nodePort
